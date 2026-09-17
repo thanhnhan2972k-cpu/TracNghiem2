@@ -1,0 +1,43 @@
+TITLE: Toán vui lớp 5
+DESCRIPTION: Đề mẫu để kiểm tra hệ thống
+SUBJECT: Toán học
+ICON: 🧮
+DURATION: 5
+
+Câu 1: 2 + 3 × 4 bằng bao nhiêu?
+A. 20
+B. 14
+C. 24
+D. 18
+Đáp án: B
+Giải thích: Thực hiện phép nhân trước: 3 × 4 = 12, sau đó 2 + 12 = 14.
+
+Câu 2: Phân số nào bằng 1/2?
+A. 2/3
+B. 3/8
+C. 4/8
+D. 5/8
+Đáp án: C
+Giải thích: 4/8 rút gọn được thành 1/2.
+
+Câu 3: Chu vi hình vuông cạnh 6 cm là bao nhiêu?
+A. 12 cm
+B. 18 cm
+C. 24 cm
+D. 36 cm
+Đáp án: C
+Giải thích: Chu vi hình vuông bằng cạnh nhân 4, nên 6 × 4 = 24 cm.
+
+Câu 4: Số nào lớn nhất?
+A. 0,45
+B. 0,54
+C. 0,405
+D. 0,504
+Đáp án: B
+
+Câu 5: 1000 g bằng bao nhiêu kg?
+A. 0,1 kg
+B. 1 kg
+C. 10 kg
+D. 100 kg
+Đáp án: B

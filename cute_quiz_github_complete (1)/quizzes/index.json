@@ -1,0 +1,16 @@
+{
+  "quizzes": [
+    {
+      "id": "de-mau",
+      "title": "Toán vui lớp 5",
+      "description": "Đề mẫu để kiểm tra hệ thống",
+      "subject": "Toán học",
+      "icon": "🧮",
+      "duration": 300,
+      "questionCount": 5,
+      "file": "de-mau.json",
+      "source": "de-mau.txt"
+    }
+  ],
+  "errors": []
+}

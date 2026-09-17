@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff7fb">
+  <meta name="description" content="Website trắc nghiệm mobile dễ thương chạy trên GitHub Pages.">
+  <title>Quiz Mầm Xinh 🌷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-btn ghost" id="backBtn" aria-label="Quay lại">←</button>
+      <div class="brand">
+        <div class="brand-bubble">🌷</div>
+        <div>
+          <div class="brand-title">Quiz Mầm Xinh</div>
+          <div class="brand-sub">Học vui • Nhớ lâu</div>
+        </div>
+      </div>
+      <button class="icon-btn ghost" id="soundBtn" aria-label="Bật tắt âm thanh">🔔</button>
+    </header>
+
+    <main id="app" aria-live="polite"></main>
+
+    <nav class="bottom-nav" id="bottomNav" aria-label="Điều hướng chính">
+      <button class="nav-item active" data-screen="home"><span>🏠</span><small>Trang chủ</small></button>
+      <button class="nav-item" data-screen="library"><span>📚</span><small>Đề thi</small></button>
+      <button class="nav-item" data-screen="history"><span>⭐</span><small>Kết quả</small></button>
+    </nav>
+  </div>
+
+  <template id="loadingTpl">
+    <section class="screen">
+      <div class="loading-card">
+        <div class="loading-flower">🌷</div>
+        <h1>Đang chuẩn bị đề...</h1>
+        <p>Chờ một chút để mình lấy danh sách bài nhé.</p>
+      </div>
+    </section>
+  </template>
+
+  <template id="homeTpl">
+    <section class="screen">
+      <div id="buildWarning"></div>
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="tiny-pill">✨ Hôm nay học gì nhỉ?</span>
+          <h1>Chào bạn nhỏ! 👋</h1>
+          <p>Chọn một bài trắc nghiệm và cùng chinh phục điểm thật cao nhé.</p>
+          <button class="primary-btn" data-action="start-latest">Bắt đầu ngay 🚀</button>
+        </div>
+        <div class="mascot" aria-hidden="true">
+          <div class="sun">☀️</div><div class="cloud">☁️</div><div class="bear">🐻</div>
+        </div>
+      </div>
+
+      <div class="section-title-row">
+        <div><span class="eyebrow">Bài mới</span><h2>Đề nổi bật</h2></div>
+        <button class="text-btn" data-screen-jump="library">Xem tất cả</button>
+      </div>
+      <div class="quiz-grid" id="featuredList"></div>
+
+      <div class="streak-card">
+        <div class="streak-icon">🔥</div>
+        <div><strong>Cùng học mỗi ngày!</strong><p>Kết quả được lưu ngay trên điện thoại của bạn.</p></div>
+        <div class="streak-days">★</div>
+      </div>
+    </section>
+  </template>
+
+  <template id="libraryTpl">
+    <section class="screen">
+      <div class="page-heading">
+        <span class="eyebrow">Kho đề</span>
+        <h1>Chọn bài bạn muốn làm 📚</h1>
+        <p>Danh sách này được tạo tự động từ thư mục <b>quiz_sources</b> trên GitHub.</p>
+      </div>
+      <div class="search-box"><span>🔎</span><input id="searchInput" type="search" placeholder="Tìm tên đề..." autocomplete="off"></div>
+      <div class="quiz-list" id="quizList"></div>
+    </section>
+  </template>
+
+  <template id="quizTpl">
+    <section class="screen quiz-screen">
+      <div class="quiz-status">
+        <div><span class="eyebrow" id="quizSubject"></span><h1 id="quizTitle"></h1></div>
+        <div class="timer-pill">⏱ <span id="timer">--:--</span></div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-meta"><span id="progressText"></span><span id="answeredText"></span></div>
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+
+      <article class="question-card">
+        <div class="question-badge" id="questionBadge"></div>
+        <h2 id="questionText"></h2>
+        <div class="answers" id="answers"></div>
+      </article>
+
+      <div class="quiz-actions">
+        <button class="secondary-btn" id="prevBtn">← Câu trước</button>
+        <button class="primary-btn grow" id="nextBtn">Câu tiếp →</button>
+      </div>
+      <div class="dot-nav" id="dotNav" aria-label="Danh sách câu hỏi"></div>
+    </section>
+  </template>
+
+  <template id="resultTpl">
+    <section class="screen result-screen">
+      <div class="result-card">
+        <div class="confetti">🎉 ✨ 🌸</div>
+        <div class="result-face">🥳</div>
+        <span class="tiny-pill">Hoàn thành rồi!</span>
+        <h1 id="resultHeading">Tuyệt lắm!</h1>
+        <p class="result-sub">Bạn đã hoàn thành bài trắc nghiệm.</p>
+        <div class="score-ring"><div><strong id="scoreNumber"></strong><span>/10 điểm</span></div></div>
+        <div class="result-stats">
+          <div class="stat good"><span>✅</span><strong id="correctCount"></strong><small>Đúng</small></div>
+          <div class="stat bad"><span>❌</span><strong id="wrongCount"></strong><small>Sai</small></div>
+          <div class="stat"><span>🎯</span><strong id="percentScore"></strong><small>Chính xác</small></div>
+        </div>
+        <button class="primary-btn full" id="reviewBtn">Xem lại đáp án 👀</button>
+        <button class="secondary-btn full" id="retryBtn">Làm lại bài 🔁</button>
+      </div>
+    </section>
+  </template>
+
+  <template id="reviewTpl">
+    <section class="screen">
+      <div class="page-heading">
+        <span class="eyebrow">Xem lại</span>
+        <h1>Đáp án của bạn 👀</h1>
+        <p>Những câu sai được đánh dấu để dễ ôn lại.</p>
+      </div>
+      <div id="reviewList" class="review-list"></div>
+      <button class="primary-btn full" data-screen-jump="home">Về trang chủ 🏠</button>
+    </section>
+  </template>
+
+  <template id="historyTpl">
+    <section class="screen">
+      <div class="page-heading">
+        <span class="eyebrow">Thành tích</span>
+        <h1>Kết quả gần đây ⭐</h1>
+        <p>Lịch sử được lưu trên chính trình duyệt của thiết bị này.</p>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </template>
+
+  <template id="errorTpl">
+    <section class="screen">
+      <div class="error-card">
+        <div class="big-emoji">🌧️</div>
+        <h1>Chưa tải được đề</h1>
+        <p id="errorMessage"></p>
+        <button class="primary-btn full" id="reloadBtn">Thử lại 🔄</button>
+      </div>
+    </section>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>

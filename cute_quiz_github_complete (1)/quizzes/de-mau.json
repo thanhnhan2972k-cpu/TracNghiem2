@@ -1,0 +1,70 @@
+{
+  "title": "Toán vui lớp 5",
+  "description": "Đề mẫu để kiểm tra hệ thống",
+  "subject": "Toán học",
+  "icon": "🧮",
+  "duration": 300,
+  "questions": [
+    {
+      "id": 1,
+      "question": "2 + 3 × 4 bằng bao nhiêu?",
+      "options": [
+        "20",
+        "14",
+        "24",
+        "18"
+      ],
+      "correct": 1,
+      "explain": "Thực hiện phép nhân trước: 3 × 4 = 12, sau đó 2 + 12 = 14."
+    },
+    {
+      "id": 2,
+      "question": "Phân số nào bằng 1/2?",
+      "options": [
+        "2/3",
+        "3/8",
+        "4/8",
+        "5/8"
+      ],
+      "correct": 2,
+      "explain": "4/8 rút gọn được thành 1/2."
+    },
+    {
+      "id": 3,
+      "question": "Chu vi hình vuông cạnh 6 cm là bao nhiêu?",
+      "options": [
+        "12 cm",
+        "18 cm",
+        "24 cm",
+        "36 cm"
+      ],
+      "correct": 2,
+      "explain": "Chu vi hình vuông bằng cạnh nhân 4, nên 6 × 4 = 24 cm."
+    },
+    {
+      "id": 4,
+      "question": "Số nào lớn nhất?",
+      "options": [
+        "0,45",
+        "0,54",
+        "0,405",
+        "0,504"
+      ],
+      "correct": 1
+    },
+    {
+      "id": 5,
+      "question": "1000 g bằng bao nhiêu kg?",
+      "options": [
+        "0,1 kg",
+        "1 kg",
+        "10 kg",
+        "100 kg"
+      ],
+      "correct": 1
+    }
+  ],
+  "id": "de-mau",
+  "source": "de-mau.txt",
+  "questionCount": 5
+}
